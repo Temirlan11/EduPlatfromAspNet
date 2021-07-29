@@ -1,0 +1,50 @@
+﻿@model IEnumerable<Subject>
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+<div class="modal-body p-4">
+    <h3>CREATE COURSE</h3>
+    <form asp-action="AddCourse" asp-controller="Home" asp-anti-forgery="true">
+        <div class="row mb-4">
+            <div class="col">
+                <div class="form-outline">
+                    <label class="form-label" for="form6Example1">Name of Course</label>
+                    <input type="text" id="form6Example1" name="Name" style="border-radius : 100px" class="form-control" />
+                </div>
+            </div>
+        </div>
+
+        <div class="form-outline mb-4">
+            <label class="form-label" for="form6Example7">Description</label>
+            <textarea class="form-control" id="form6Example7" name="Description" style="border-radius : 100px" rows="4"></textarea>
+        </div>
+
+
+        <div class="form-outline mb-4">
+            <label class="form-label" for="form6Example3">Image URL</label>
+            <input type="text" id="form6Example3" name="Img" style="border-radius : 100px" class="form-control" />
+        </div>
+
+        <div class="form-outline mb-4">
+            <label class="form-label" for="form6Example3">Price</label>
+            <input type="number" id="form6Example3" name="Price" style="border-radius : 100px" class="form-control" />
+        </div>
+
+
+        <div class="form-outline mb-4">
+            <label class="form-label" for="form6Example3">Subject</label>
+            <select class="form-select" name="Subject" aria-label="Default select example">
+                @foreach (var s in Model)
+                {
+                    <option value="@s.Id">@s.Name</option>
+                }
+            </select>
+        </div>
+
+
+        <button type="submit" class="btn btn-primary btn-block" style="border-radius : 100px">ADD</button>
+    </form>
+</div>

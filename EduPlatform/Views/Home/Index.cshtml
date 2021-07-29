@@ -1,0 +1,93 @@
+﻿@model IEnumerable<Course>
+
+@{
+    ViewData["Title"] = "Home Page";
+    var curr = ViewData["CurrentUser"];
+}
+
+@*
+    <table class="table">
+        <tr><td>Course Name</td><td>Price</td></tr>
+        @foreach (var item in Model)
+        {
+            <tr><td>@item.CourseName</td><td>@item.Price</td></tr>
+        }
+    </table>
+*@
+
+<div class="container">
+    <div class="row mt-5">
+
+        <form method="get" asp-action="Index">
+            <div class="col">
+                <div class="input-group mb-3">
+                    <input type="text" value="@ViewData["GetCourseByName"]" name="searchName" class="form-control" placeholder="Course name" style="border-radius: 100px;" aria-label="Recipient's username" aria-describedby="button-addon2">
+                </div>
+            </div>
+
+            <div class="col">
+                <button class="btn btn-outline-success" type="submit" style="border-radius: 100px;" id="button-addon2">Search</button>
+            </div>
+        </form>
+
+        <div class="col">
+            <div class="input-group mb-3">
+                <input type="text" class="form-control" placeholder="Price From" style="border-radius: 100px;" aria-label="Amount (to the nearest dollar)">
+            </div>
+        </div>
+
+        <div class="col">
+            <div class="input-group mb-3">
+                <input type="text" class="form-control" placeholder="To" style="border-radius: 100px;" aria-label="Amount (to the nearest dollar)">
+            </div>
+        </div>
+
+        <div class="col">
+            <div class="input-group mb-3">
+                <button class="btn btn-outline-secondary dropdown-toggle" style="border-radius: 100px;" type="button" data-bs-toggle="dropdown" aria-expanded="false">Category</button>
+                <ul class="dropdown-menu dropdown-menu-end">
+                    <li><a class="dropdown-item" href="#">Action</a></li>
+                    <li><a class="dropdown-item" href="#">Another action</a></li>
+                    <li><a class="dropdown-item" href="#">Something else here</a></li>
+                    <li><hr class="dropdown-divider"></li>
+                    <li><a class="dropdown-item" href="#">Separated link</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="col">
+            <button class="btn btn-outline-success" type="button" style="border-radius: 100px;" id="button-addon2">Search</button>
+        </div>
+    </div>
+</div>
+
+<div class="album py-3">
+    <div class="container">
+
+        <div class="row mb-3">
+            <h6 style="font-family: Helvetica;">9 ANNOUNCEMENTS ARE AVAILABLE</h6>
+        </div>
+
+        <div class="row">
+            @foreach (var item in Model)
+            {
+                <div class="col-md-3">
+                    <div class="card mb-4 shadow-sm">
+                        <img class="card-img-top" src="@item.Img" style="width: 100%; height: 25vh; object-fit: cover;" alt="Card image cap">
+                        <div class="card-body">
+                            <p class="card-text">@item.CourseName</p>
+                            <small class="text-muted" style="font-size: 11px">9 mins</small>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div class="btn-group">
+                                    <a asp-action="Details" asp-controller="Home" asp-route-id="@item.Id"  style="border-radius: 100px; margin-right: 5px" class="btn btn-sm btn-outline-secondary">Open</a>
+                                    <button type="button" style="border-radius: 100px;" class="btn btn-sm btn-outline-secondary">Save</button>
+                                </div>
+                                <h4 class="text-muted">@item.Price$</h4>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>
